@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+struct Order {
+    int order_id;
+    string pickup;
+    string destination;
+    string order_time;
+};
+
+// Merge Sort untuk mengurutkan berdasarkan order_time
+void merge(vector<Order>& orders, int left, int mid, int right) {
+    vector<Order> temp;
+    int i = left, j = mid + 1;
+
+    while (i <= mid && j <= right) {
+        if (orders[i].order_time <= orders[j].order_time) {
+            temp.push_back(orders[i]);
+            i++;
+        } else {
+            temp.push_back(orders[j]);
+            j++;
+        }
+    }
+
+    while (i <= mid) temp.push_back(orders[i++]);
+    while (j <= right) temp.push_back(orders[j++]);
+
+    for (int k = left; k <= right; k++) {
+        orders[k] = temp[k - left];
+    }
+}
+
+void merge_sort(vector<Order>& orders, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        merge_sort(orders, left, mid);
+        merge_sort(orders, mid + 1, right);
+        merge(orders, left, mid, right);
+    }
+}
+
+int main() {
+	
+	cout << "---------------------------" <<endl;
+	cout<< "Nama : Muhammad Deni Maulana" <<endl;
+	cout<< "NIM  : 241011400987" <<endl;
+	cout<< "Kelas : 01TPLE012" <<endl;
+	cout << "---------------------------"<<endl;
+	
+    vector<Order> orders = {
+        {1, "A", "B", "2025-01-05 08:30:00"},
+        {2, "C", "D", "2025-01-05 07:45:00"},
+        {3, "E", "F", "2025-01-05 09:15:00"},
+        {4, "G", "H", "2025-01-05 07:45:00"}
+         
+    };
+
+    merge_sort(orders, 0, orders.size() - 1);
+
+    for (const auto& order : orders) {
+        cout << "Order ID: " << order.order_id
+             << ", Pickup: " << order.pickup
+             << ", Destination: " << order.destination
+             << ", Order Time: " << order.order_time << endl;
+    }
+
+    return 0;
+}
