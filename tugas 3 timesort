@@ -1,0 +1,19 @@
+print ("Muhammad Deni Maulana")
+print ("241011400987")
+print ("01TPLE012")
+
+
+# Data pesanan
+orders = [
+    {"order_id": 1, "pickup": "A", "destination": "B", "order_time": "2025-01-05 08:30:00"},
+    {"order_id": 2, "pickup": "C", "destination": "D", "order_time": "2025-01-05 07:45:00"},
+    {"order_id": 3, "pickup": "E", "destination": "F", "order_time": "2025-01-05 09:15:00"},
+    {"order_id": 4, "pickup": "G", "destination": "H", "order_time": "2025-01-05 07:45:00"}
+]
+
+# Mengurutkan berdasarkan waktu pemesanan
+sorted_orders = sorted(orders, key=lambda x: x["order_time"])
+
+# Menampilkan hasil pengurutan
+for order in sorted_orders:
+    print(order)
