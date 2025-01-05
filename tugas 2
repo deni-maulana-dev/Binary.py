@@ -1,0 +1,16 @@
+print ("Muhammad Deni Maulana")
+print ("241011400987")
+print ("01TPLE012")
+
+
+def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i  # Elemen ditemukan
+    return -1  # Elemen tidak ditemukan
+
+# Contoh penggunaan
+unsorted_data = [4, 2, 9, 11, 3, 5, 7]
+target = 7
+result = linear_search(unsorted_data, target)
+print("Hasil Linear Search:", "Ditemukan di indeks" if result != -1 else "Tidak ditemukan", result)
